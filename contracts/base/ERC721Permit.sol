@@ -94,6 +94,6 @@ abstract contract ERC721Permit is BlockTimestamp, ERC721Enumerable, IERC721Permi
             require(recoveredAddress == owner, 'Unauthorized');
         }
 
-        _approve(spender, tokenId);
+        _approve(spender, tokenId, address(0), false);
     }
 }
