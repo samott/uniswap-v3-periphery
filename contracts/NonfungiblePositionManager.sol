@@ -186,7 +186,7 @@ contract NonfungiblePositionManager is
     }
 
     function tokenURI(uint256 tokenId) public view override(ERC721, IERC721Metadata) returns (string memory) {
-        require(_exists(tokenId));
+        require(_ownerOf(tokenId) != address(0));
         return INonfungibleTokenPositionDescriptor(_tokenDescriptor).tokenURI(this, tokenId);
     }
 
@@ -386,7 +386,7 @@ contract NonfungiblePositionManager is
 
     /// @inheritdoc IERC721
     function getApproved(uint256 tokenId) public view override(ERC721, IERC721) returns (address) {
-        require(_exists(tokenId), 'ERC721: approved query for nonexistent token');
+        require(_ownerOf(tokenId) != address(0), 'ERC721: approved query for nonexistent token');
 
         return _positions[tokenId].operator;
     }
