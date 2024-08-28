@@ -181,7 +181,7 @@ contract NonfungiblePositionManager is
     }
 
     modifier isAuthorizedForToken(uint256 tokenId) {
-        require(_isAuthorized(msg.sender, tokenId), 'Not approved');
+        require(_isAuthorized(_ownerOf(tokenId), msg.sender, tokenId), 'Not approved');
         _;
     }
 
